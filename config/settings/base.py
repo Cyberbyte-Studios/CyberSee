@@ -58,6 +58,8 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     # custom users app
     'cybersee.users.apps.UsersConfig',
+    'cybersee.metrics',
+    'cybersee.servers',
     # Your stuff: custom apps go here
 ]
 
