@@ -1,6 +1,5 @@
 from django.contrib import admin
-from cybersee.metrics.models import Metric
-from cybersee.metrics.models import Reading
+from cybersee.metrics.models import Metric, Reading
 
 @admin.register(Metric)
 class MetricAdmin(admin.ModelAdmin):
