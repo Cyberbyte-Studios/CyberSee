@@ -6,6 +6,9 @@ class Metric(models.Model):
     description = models.TextField(null=True, blank=True)
     unit = models.CharField(max_length=5)
 
+    def __str__(self):
+        return self.name
+
 class Reading(models.Model):
     metric = models.ForeignKey(Metric)
     value = models.FloatField()#TODO:

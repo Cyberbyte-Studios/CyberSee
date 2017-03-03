@@ -5,7 +5,7 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from .models import User
+from cybersee.users.models import User, Community
 
 
 class MyUserChangeForm(UserChangeForm):
@@ -40,3 +40,7 @@ class MyUserAdmin(AuthUserAdmin):
     ) + AuthUserAdmin.fieldsets
     list_display = ('username', 'name', 'is_superuser')
     search_fields = ['name']
+
+@admin.register(Community)
+class CommunityAdmin(admin.ModelAdmin):
+    pass
