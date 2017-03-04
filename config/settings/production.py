@@ -113,7 +113,7 @@ STATICFILES_STORAGE = 'sensor_portal.s3utils.CachedS3BotoStorage'
 # For Django 1.7+, 'collectfast' should come before
 # 'django.contrib.staticfiles'
 AWS_PRELOAD_METADATA = True
-INSTALLED_APPS = ('collectfast', ) + INSTALLED_APPS
+INSTALLED_APPS = ['collectfast', ] + INSTALLED_APPS
 # COMPRESSOR
 # ------------------------------------------------------------------------------
 COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
