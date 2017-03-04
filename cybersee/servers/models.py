@@ -17,7 +17,7 @@ class Server(models.Model):
     description = models.TextField(null=True, blank=True)
     metrics = models.ManyToManyField(Metric)
     owner = models.ForeignKey(User)
-    #game = models.ForeignKey(Game)
+    game = models.ForeignKey(Game)
 
     def __str__(self):
         return self.name

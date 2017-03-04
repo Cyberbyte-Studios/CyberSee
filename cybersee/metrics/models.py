@@ -4,7 +4,7 @@ from django.utils import timezone
 class Metric(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
-    unit = models.CharField(max_length=5)
+    unit = models.CharField(max_length=5, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -14,3 +14,6 @@ class Reading(models.Model):
     value = models.FloatField()#TODO:
     recorded = models.DateTimeField(default=timezone.now, db_index=True)
     server = models.ForeignKey('servers.Server')
+
+    def __str__(self):
+        return self.metric.name
