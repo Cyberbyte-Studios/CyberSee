@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 from __future__ import absolute_import, unicode_literals
 
 import environ
+import sys
 
 ROOT_DIR = environ.Path(__file__) - 3  # (cybersee/config/settings/base.py - 3 = cybersee/)
 APPS_DIR = ROOT_DIR.path('cybersee')
@@ -123,6 +124,8 @@ DATABASES = {
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
+if 'test' in sys.argv:
+    DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
 
 # GENERAL CONFIGURATION
 # ------------------------------------------------------------------------------

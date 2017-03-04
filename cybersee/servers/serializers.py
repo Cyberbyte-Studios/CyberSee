@@ -1,8 +1,18 @@
 from rest_framework import serializers
-from cybersee.servers.models import Server
+from cybersee.servers.models import Server, Game, ServerLog
 
 
-class ServerSerializer(serializers.ModelSerializer):    
+class GameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Game
+        fields = ('pk', 'name', 'description')
+
+class ServerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Server
-        fields = ('name', 'description', 'metrics')
+        fields = ('pk', 'name', 'owner', 'description', 'game', 'metrics')
+
+class ServerLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServerLog
+        fields = ('pk', 'server', 'message', 'recorded')

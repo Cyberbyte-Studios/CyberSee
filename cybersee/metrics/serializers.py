@@ -10,4 +10,4 @@ class MetricSerializer(serializers.ModelSerializer):
 class ReadingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reading
-        fields = ('metric', 'value', 'recorded')
+        fields = ('server', 'metric', 'value', 'recorded')

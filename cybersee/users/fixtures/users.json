@@ -1,0 +1,25 @@
+[
+   {
+      "model":"users.user",
+      "pk":1,
+      "fields":{
+         "password":"pbkdf2_sha256$30000$3vMr8nLEvC9E$CBYs3IDz1F6OJD8SeCfu3g0QWE8Qlwe9zNUtjV0xaMI=",
+         "last_login":null,
+         "is_superuser":true,
+         "username":"Test",
+         "first_name":"Test",
+         "last_name":"User",
+         "email":"test@cyberbyte.org.uk",
+         "is_staff":true,
+         "is_active":true,
+         "date_joined":"2017-03-04T20:29:53Z",
+         "name":"Test",
+         "groups":[
+
+         ],
+         "user_permissions":[
+
+         ]
+      }
+   }
+]

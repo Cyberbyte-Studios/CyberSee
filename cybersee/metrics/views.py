@@ -17,3 +17,7 @@ class ReadingViewSet(viewsets.ModelViewSet):
     search_fields = ('metric__name', )
     filter_fields = ('metric', 'value', 'recorded')
     ordering_fields = ('metric', 'value', 'recorded')
+
+    def get_queryset(self):
+        user = self.request.user
+        return Reading.objects.filter(server__owner=user)

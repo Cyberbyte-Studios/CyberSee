@@ -9,13 +9,15 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from rest_framework import routers
 from cybersee.metrics.views import MetricViewSet, ReadingViewSet
-from cybersee.servers.views import ServerViewSet
+from cybersee.servers.views import ServerViewSet, GameViewSet, ServerLogViewSet
 from cybersee.payments.views import PlanViewSet
 
 router = routers.DefaultRouter()
 router.register(r'metrics', MetricViewSet)
 router.register(r'readings', ReadingViewSet)
 router.register(r'servers', ServerViewSet)
+router.register(r'server-logs', ServerLogViewSet)
+router.register(r'games', GameViewSet)
 router.register(r'payments', PlanViewSet)
 
 urlpatterns = [

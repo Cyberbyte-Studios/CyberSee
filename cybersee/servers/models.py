@@ -2,6 +2,8 @@ import uuid
 from django.db import models
 from cybersee.metrics.models import Metric
 from cybersee.users.models import User
+from django.utils import timezone
+
 
 class Game(models.Model):
     name = models.CharField(max_length=100)
@@ -21,3 +23,8 @@ class Server(models.Model):
 
     def __str__(self):
         return self.name
+
+class ServerLog(models.Model):
+    server = models.ForeignKey(Server)
+    message = models.TextField()
+    recorded = models.DateTimeField(default=timezone.now, db_index=True)
