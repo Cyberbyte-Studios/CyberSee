@@ -1,12 +1,14 @@
-{% extends "error.html" %}
+{% extends "theme/basic.html" %}
 
 {% block title %}Invalid Request{% endblock %}
 
 {% block content %}
-  <h1>400</h1>
-  <h3 class="font-bold">Invalid Request</h3>
+  <div class="middle-box text-center animated fadeInDown">
+    <h1>400</h1>
+    <h3 class="font-bold">Invalid Request</h3>
 
-  <div class="error-desc">
-    For some reason your request is invalid. Please try refreshing the page or trying again soon.
+    <div class="error-desc">
+      For some reason your request is invalid. Please try refreshing the page or trying again soon.
+    </div>
   </div>
 {% endblock content %}
