@@ -10,13 +10,13 @@ from django.views import defaults as default_views
 from rest_framework import routers
 from cybersee.metrics.views import MetricViewSet, ReadingViewSet
 from cybersee.servers.views import ServerViewSet
-
+from cybersee.payments.views import PlanViewSet
 
 router = routers.DefaultRouter()
 router.register(r'metrics', MetricViewSet)
 router.register(r'readings', ReadingViewSet)
 router.register(r'servers', ServerViewSet)
-
+router.register(r'payments', PlanViewSet)
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),

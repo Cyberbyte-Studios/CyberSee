@@ -63,6 +63,7 @@ LOCAL_APPS = [
     'cybersee.users.apps.UsersConfig',
     'cybersee.metrics',
     'cybersee.servers',
+    'cybersee.payments',
     # Your stuff: custom apps go here
 ]
 

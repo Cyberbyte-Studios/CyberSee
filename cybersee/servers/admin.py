@@ -10,5 +10,5 @@ class GameAdmin(admin.ModelAdmin):
 @admin.register(Server)
 class ServerAdmin(admin.ModelAdmin):
     list_display = ('name', 'game', 'owner')
-    search_fields = ('name', 'game__name', 'owner__name')
+    search_fields = ('name', 'game__name', 'owner__username', 'owner__email')
     list_filter = ('game__name', )
