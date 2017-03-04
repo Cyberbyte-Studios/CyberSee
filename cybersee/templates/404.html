@@ -1,9 +1,15 @@
-{% extends "base.html" %}
+{% extends "error.html" %}
 
 {% block title %}Page not found{% endblock %}
 
 {% block content %}
-<h1>Page not found</h1>
+  <h1>404</h1>
+  <h3 class="font-bold">Page not found</h3>
 
-<p>This is not the page you were looking for.</p>
+  <div class="error-desc">
+    Sorry, but the page you are looking for cannot been found. Try checking the URL for error and the refresh button on your browser.
+    {% if request.sentry.id %}
+      Your error tracking code is: <strong>{{ request.sentry.id }}</strong>
+    {% endif %}
+  </div>
 {% endblock content %}

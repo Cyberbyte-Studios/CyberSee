@@ -1,0 +1,13 @@
+{% extends "error.html" %}
+
+{% block title %}Forbidden{% endblock %}
+
+{% block content %}
+  <h1>403</h1>
+  <h3 class="font-bold">Forbidden</h3>
+
+  <div class="error-desc">
+    For some reason you are not allowed to make this request. We recommend trying to login again.
+    <br/><a href="{% url "account_login" %}" class="btn btn-primary m-t">Login</a>
+  </div>
+{% endblock content %}

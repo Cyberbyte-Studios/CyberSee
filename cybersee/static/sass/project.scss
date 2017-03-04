@@ -1,72 +1,56 @@
+// Google Fonts
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 
-// project specific CSS goes here
+// Dependancies
+@import "node_modules/animate.css/animate.css"
 
-////////////////////////////////
-		//Variables//
-////////////////////////////////
 
-// Alert colors
+// Variables, Mixins
+@import "variables";
+@import "mixins";
 
-$white: #fff;
-$mint-green: #d6e9c6;
-$black: #000;
-$pink: #f2dede;
-$dark-pink: #eed3d7;
-$red: #b94a48;
+// INSPINIA Theme Elements
+@import "typography";
+@import "navigation";
+@import "top_navigation";
+@import "buttons";
+@import "badges_labels";
+@import "elements";
+@import "sidebar";
+@import "base";
+@import "pages";
+@import "chat";
+@import "metismenu";
+@import "spinners";
 
-////////////////////////////////
-		//Alerts//
-////////////////////////////////
+// Landing page styles
+@import "landing";
 
-// bootstrap alert CSS, translated to the django-standard levels of
-// debug, info, success, warning, error
+// RTL Support
+@import "rtl";
 
-.alert-debug {
-  background-color: $white;
-  border-color: $mint-green;
-  color: $black;
-}
+// For demo only - config box style
+@import "theme-config";
 
-.alert-error {
-  background-color: $pink;
-  border-color: $dark-pink;
-  color: $red;
-}
+// INSPINIA Skins
+@import "skins";
+@import "md-skin";
 
-////////////////////////////////
-		//Navbar//
-////////////////////////////////
+// Media query style
+@import "media";
 
-// This is a fix for the bootstrap4 alpha release
+// Custom style
+// Your custom style to override base style
+@import "custom";
 
-.navbar {
-  border-radius: 0px;
-}
-
-@media (max-width: 47.9em) {
-  .navbar-nav .nav-item {
-    display: inline-block;
-    float: none;
-    width: 100%;
+// Clear layout on print mode
+@media print {
+  nav.navbar-static-side {
+    display: none;
   }
+  body { overflow: visible !important; }
 
-  .navbar-nav .nav-item + .nav-item {
-    margin-left: 0;
+  #page-wrapper {
+    margin: 0;
   }
-
-  .nav.navbar-nav.pull-xs-right {
-    float: none !important;
-  }
-}
-
-////////////////////////////////
-		//Django Toolbar//
-////////////////////////////////
-
-// Display django-debug-toolbar.
-// See https://github.com/django-debug-toolbar/django-debug-toolbar/issues/742
-// and https://github.com/pydanny/cookiecutter-django/issues/317
-
-[hidden][style="display: block;"] {
-  display: block !important;
 }
