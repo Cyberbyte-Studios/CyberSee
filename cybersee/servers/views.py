@@ -10,3 +10,7 @@ class ServerViewSet(viewsets.ModelViewSet):
     search_fields = ('name', 'description')
     filter_fields = ('name', )
     ordering_fields = ('name', )
+
+    def get_queryset(self):
+        user = self.request.user
+        return Server.objects.filter(owner=user)

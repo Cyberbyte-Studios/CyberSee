@@ -54,6 +54,7 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',  # registration
     'rest_framework',
     'stdimage',
+    'rest_framework.authtoken',
 ]
 
 # Apps specific for this project go here.
@@ -107,6 +108,7 @@ EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.s
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [
     ("""Sam Collins""", 'sam@cyberbyte.org.uk'),
+    ("""Cameron Chilton""", 'cameron@cyberbyte.org.uk'),
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
@@ -280,3 +282,15 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': ('rest_framework.pagination.LimitOffsetPagination'),
+    'PAGE_SIZE': 100,
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissions',
+    )
+}
