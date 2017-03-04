@@ -1,9 +1,11 @@
 {
   "name": "cybersee",
   "version": "0.1.0",
-  "dependencies": {},
+  "dependencies": {
+    "animate.css": "3.1.1",
+    "metismenu": "^2.5.0"
+  },
   "devDependencies": {
-    
     "browser-sync": "^2.14.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
