@@ -40,14 +40,13 @@ pytz==2016.10
 django-redis==4.7.0
 redis>=2.10.5
 
-
 celery==4.0.2
-
-
 
 rcssmin==1.0.6
 django-compressor==2.1.1
 
-
-# Your custom requirements go here
-djangorestframework
+djangorestframework==3.5.3
+django-filter==1.0.1
+argon2-cffi==16.3.0
+django-otp==0.3.8
+django-ses==0.8.2
