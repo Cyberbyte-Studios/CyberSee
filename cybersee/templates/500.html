@@ -1,6 +1,21 @@
-{% extends "error.html" %}
+{% extends "theme/basic.html" %}
 
-{% block title %}500 Server Error{% endblock %}
+{% block title %}Server Error{% endblock %}
+
+{% block content %}
+  <div class="middle-box text-center animated fadeInDown">
+    <h1>500</h1>
+    <h3 class="font-bold">Internal Server Error</h3>
+
+    <div class="error-desc">
+      The server encountered something unexpected that didn't allow it to complete the request. We apologize.<br/>
+      You can go back to dashboard page: <br/><a href="{% url "dashboard" %}" class="btn btn-primary m-t">Dashboard</a>
+      {% if request.sentry.id %}
+        Your error tracking code is: <strong>{{ request.sentry.id }}</strong>
+      {% endif %}
+    </div>
+  </div>
+{% endblock content %}
 
 {% block script %}
   {% if request.sentry.id %}

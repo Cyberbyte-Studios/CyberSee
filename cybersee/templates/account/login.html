@@ -1,48 +1,56 @@
-{% extends "account/base.html" %}
+{% extends "theme/basic.html" %}
 
 {% load i18n %}
 {% load account socialaccount %}
 {% load crispy_forms_tags %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% block title %}{% trans "Sign In" %}{% endblock %}
 
-{% block inner %}
+{% block content %}
+  <div class="loginColumns animated fadeInDown">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="font-bold">Sign in</h2>
+        <p>To be able to use our system you will need to sign in with a valid account.</p>
+        <p>Once this has been done feel free to setup your servers and start sending us metrics we will handle all the
+          rest</p>
+        <p>
+          <small>Having problems? Contact support at
+            <a href="mailto:support@cyberbyte.org.uk">support@cyberbyte.org.uk</a></small>
+        </p>
 
-<h1>{% trans "Sign In" %}</h1>
+      </div>
+      <div class="col-md-6">
+        <div class="ibox-content">
+          <form class="m-t login" role="form" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
+            <button class="btn btn-primary block full-width m-b primaryAction"
+                    type="submit">{% trans "Sign In" %}</button>
+            <a href="{% url 'account_reset_password' %}">
+              <small>{% trans "Forgot Password?" %}</small>
+            </a>
 
-{% get_providers as socialaccount_providers %}
-
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-
-<div class="socialaccount_ballot">
-
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-
-  <div class="login-or">{% trans 'or' %}</div>
-
-</div>
-
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
-
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form|crispy }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction btn btn-primary" type="submit">{% trans "Sign In" %}</button>
-</form>
-
+            <p class="text-muted text-center">
+              <small>Do not have an account?</small>
+            </p>
+            <a class="btn btn-sm btn-white btn-block" href="{% url "account_signup" %} ">Create an account</a>
+          </form>
+          <p class="m-t">
+            <small>Remember to look at our privacy policy</small>
+          </p>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-md-6">
+        Copyright &copy; {% now "Y" %} <a href="https://cyberbyte.org.uk">Cyberbyte Studios</a>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 

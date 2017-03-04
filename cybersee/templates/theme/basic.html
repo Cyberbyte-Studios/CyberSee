@@ -1,4 +1,4 @@
-{%  load static %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,20 +16,10 @@
 </head>
 
 <body class="gray-bg">
-<div class="middle-box text-center animated fadeInDown">
-  {% block content %}
-    <h1>500</h1>
-    <h3 class="font-bold">Internal Server Error</h3>
-
-    <div class="error-desc">
-      The server encountered something unexpected that didn't allow it to complete the request. We apologize.<br/>
-      You can go back to dashboard page: <br/><a href="{% url "dashboard" %}" class="btn btn-primary m-t">Dashboard</a>
-      {% if request.sentry.id %}
-        Your error tracking code is: <strong>{{ request.sentry.id }}</strong>
-      {% endif %}
-    </div>
-  {% endblock content %}
-</div>
+{% block content %}
+  <div class="middle-box text-center animated fadeInDown">
+    <h1>Page goes here</h1>
+{% endblock content %}
 
 {% block javascript %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"

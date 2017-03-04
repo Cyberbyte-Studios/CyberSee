@@ -1,13 +1,16 @@
-{% extends "error.html" %}
+{% extends "theme/basic.html" %}
 
 {% block title %}Invalid Token{% endblock %}
 
 {% block content %}
-  <h1>403</h1>
-  <h3 class="font-bold">Invalid token</h3>
+  <div class="middle-box text-center animated fadeInDown">
+    <h1>403</h1>
+    <h3 class="font-bold">Invalid token</h3>
 
-  <div class="error-desc">
-    Your request contained an invalid token. This can usually be fixed by refreshing the page or visiting our dashboard
-    <br/><a href="{% url "dashboard" %}" class="btn btn-primary m-t">Dashboard</a>
+    <div class="error-desc">
+      Your request contained an invalid token. This can usually be fixed by refreshing the page or visiting our
+      dashboard
+      <br/><a href="{% url "dashboard" %}" class="btn btn-primary m-t">Dashboard</a>
+    </div>
   </div>
 {% endblock content %}
