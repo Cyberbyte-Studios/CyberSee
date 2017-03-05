@@ -62,6 +62,8 @@ DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TEMPLATE_CONTEXT': True,
 }
 
+#ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '100.73.95.10']
+
 # django-extensions
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ['django_extensions', ]

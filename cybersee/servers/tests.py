@@ -11,7 +11,6 @@ class TestGameAPI(APITestCase, APIClient):
     ]
 
     def test_create_game(self):
-        print ("\nTesting Game Creation")
         self.client.login(username='Test', password='testing123')
 
         data = {"name": "Rust", "description": "Rust Game"}
@@ -21,7 +20,6 @@ class TestGameAPI(APITestCase, APIClient):
         self.assertEqual(Game.objects.get(pk=response.data['pk']).description, "Rust Game")
 
     def test_list_games(self):
-        print ("\nTesting Game List")
         self.client.login(username='Test', password='testing123')
 
         response = self.client.get('/api/v1/games/')
@@ -29,7 +27,6 @@ class TestGameAPI(APITestCase, APIClient):
         self.assertEqual(response.data['count'], 2)
 
     def test_game_delete(self):
-        print ("\nTesting Game Delete (2)")
         self.client.login(username='Test', password='testing123')
 
         response = self.client.delete('/api/v1/games/2/')
@@ -44,11 +41,10 @@ class TestServerAPI(APITestCase, APIClient):
     ]
 
     def test_create_server(self):
-        print ("\nTesting Server Creation")
         self.client.login(username='Test', password='testing123')
 
         user = User.objects.get(username="Test").pk
-        data = {"name": "Rust Server", "ip_address": "255.255.255.255", "description": "Rust Game", "owner": user, "metrics": [3, 5, 7], "game": 2}
+        data = {"name": "Rust Server", "ip_address": "255.255.255.255", "description": "Rust Game", "owner": user, "game": 2}
         response = self.client.post('/api/v1/servers/', data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -56,18 +52,16 @@ class TestServerAPI(APITestCase, APIClient):
         self.assertEqual(Server.objects.get(pk=response.data['pk']).game.name, "Arma 2")
 
     def test_create_server_fail(self):
-        print ("\nTesting Server Creation Fail")
         self.client.login(username='Test', password='testing123')
 
         user = User.objects.get(username="Test").pk
-        data = {"name": "Rust", "ip_address": "255.255.255.255", "description": "Rust Game", "owner": user, "game": 2}
+        data = {"name": "Rust", "ip_address": "255.255.255.255", "description": "Rust Game", "owner": user}
         response = self.client.post('/api/v1/servers/', data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(str(response.data), "{'metrics': ['This field is required.']}")
+        self.assertEqual(str(response.data), "{'game': ['This field is required.']}")
 
     def test_server_fetch(self):
-        print ("\nTesting Server Fetch (6749b1b0-39c1-4f79-babb-3092cb0dda22)")
         self.client.login(username='Test', password='testing123')
 
         response = self.client.get('/api/v1/servers/6749b1b0-39c1-4f79-babb-3092cb0dda22/')
@@ -77,7 +71,6 @@ class TestServerAPI(APITestCase, APIClient):
         self.assertEqual(response.data['owner'], 1)
 
     def test_server_delete(self):
-        print ("\nTesting Server Delete (8f93e773-cbaa-45f4-94c9-a4609af30164)")
         self.client.login(username='Test', password='testing123')
 
         response = self.client.delete('/api/v1/servers/8f93e773-cbaa-45f4-94c9-a4609af30164/')
@@ -90,7 +83,6 @@ class TestSereverLogAPI(APITestCase, APIClient):
     ]
 
     def test_create_log(self):
-        print ("\nTesting Server Log Creation")
         self.client.login(username='Test', password='testing123')
 
         data = {"server": "6749b1b0-39c1-4f79-babb-3092cb0dda22", "message": "Bob the Builder Can We Test It Yes We Can"}
@@ -99,7 +91,6 @@ class TestSereverLogAPI(APITestCase, APIClient):
         self.assertEqual(ServerLog.objects.get(pk=response.data['pk']).message, "Bob the Builder Can We Test It Yes We Can")
 
     def test_list_log(self):
-        print ("\nTesting Log List")
         self.client.login(username='Test', password='testing123')
 
         response = self.client.get('/api/v1/server-logs/')
@@ -107,7 +98,6 @@ class TestSereverLogAPI(APITestCase, APIClient):
         self.assertEqual(response.data['count'], 2)
 
     def test_log_delete(self):
-        print ("\nTesting Server Log Delete (2)")
         self.client.login(username='Test', password='testing123')
 
         response = self.client.delete('/api/v1/server-logs/2/')
