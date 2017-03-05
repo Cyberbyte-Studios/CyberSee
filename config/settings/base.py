@@ -56,6 +56,7 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'stdimage',
+    'table'
 ]
 
 # Apps specific for this project go here.

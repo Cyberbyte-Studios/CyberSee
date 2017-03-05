@@ -11,7 +11,7 @@ from rest_framework import routers
 
 from cybersee.base.views import HomeView, DashboardView
 from cybersee.metrics.views import MetricViewSet, ReadingViewSet
-from cybersee.servers.views import ServerViewSet, GameViewSet, ServerLogViewSet
+from cybersee.servers.views import ServerViewSet, GameViewSet, ServerLogViewSet, ServerView
 from cybersee.payments.views import PlanViewSet
 
 router = routers.DefaultRouter()
@@ -25,7 +25,7 @@ router.register(r'plans', PlanViewSet)
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^dashboard/$', DashboardView.as_view(), name='dashboard'),
-    url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+    url(r'^server/(?P<pk>[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})/$', ServerView.as_view(), name='server-detail'),
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),

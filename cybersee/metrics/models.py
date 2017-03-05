@@ -21,3 +21,6 @@ class Reading(models.Model):
 
     def __str__(self):
         return self.metric.name
+
+    class Meta:
+        ordering = ['-recorded']

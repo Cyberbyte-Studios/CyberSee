@@ -1,3 +1,5 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.detail import DetailView
 from rest_framework import viewsets
 
 from cybersee.base.helpers import get_user_or_none
@@ -32,3 +34,12 @@ class ServerLogViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return ServerLog.objects.filter(server__owner=get_user_or_none(self.request))
+
+
+class ServerView(LoginRequiredMixin, DetailView):
+    model = Server
+
+    def get_context_data(self, **kwargs):
+        context = super(ServerView, self).get_context_data(**kwargs)
+        context['server_log_table'] = Server.objects.filter(owner=self.request.user)
+        return context

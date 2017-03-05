@@ -14,8 +14,8 @@
           <div class="project-list">
             <table class="table table-hover">
               <tbody>
-              <tr>
-                {% for server in servers %}
+              {% for server in servers %}
+                <tr>
                   <td class="project-status">
                     <span class="label label-primary">Online***</span>
                   </td>
@@ -24,24 +24,25 @@
                     <br/>
                     <small>Created 14.08.2014</small>
                   </td>
+                  {{ server.metric }}
                   <td class="project-completion">
-                    <small>Completion with: 48%</small>
+                    <small>Current CPU Usage: 48%</small>
                     <div class="progress progress-mini">
                       <div style="width: 48%;" class="progress-bar"></div>
                     </div>
                   </td>
                   <td class="project-completion">
-                    <small>Completion with: 48%</small>
+                    <small>Current RAM Usage: 48%</small>
                     <div class="progress progress-mini">
                       <div style="width: 48%;" class="progress-bar"></div>
                     </div>
                   </td>
                   <td class="project-actions">
                     <a href="#" class="btn btn-white btn-sm"><i class="fa fa-line-chart"></i> Stats </a>
-                    <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+                    <a href="{% url "server" server.id %}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
                   </td>
-                {% endfor %}
               </tr>
+              {% endfor %}
               </tbody>
             </table>
           </div>
