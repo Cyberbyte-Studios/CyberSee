@@ -4,7 +4,7 @@ machine:
 
 dependencies:
   pre:
-    - sudo pip3 install -r requirements/local.txt
+    - sudo pip install -r requirements/local.txt
   override:
     - npm install
     - node_modules/gulp/bin/gulp.js
