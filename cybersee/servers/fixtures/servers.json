@@ -125,5 +125,23 @@
             9
          ]
       }
+   },
+   {
+      "model":"servers.serverlog",
+      "pk":1,
+      "fields":{
+         "server":"6749b1b0-39c1-4f79-babb-3092cb0dda22",
+         "message":"Default Message From Fixture",
+         "recorded":"2017-03-04T17:58:00Z"
+      }
+   },
+   {
+      "model":"servers.serverlog",
+      "pk":2,
+      "fields":{
+         "server":"6749b1b0-39c1-4f79-babb-3092cb0dda22",
+         "message":"Default Message From Fixture 2",
+         "recorded":"2017-03-04T17:58:00Z"
+      }
    }
 ]
