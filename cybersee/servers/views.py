@@ -5,6 +5,7 @@ from rest_framework import viewsets
 from cybersee.base.helpers import get_user_or_none
 from cybersee.servers.serializers import ServerSerializer, GameSerializer, ServerLogSerializer
 from cybersee.servers.models import Server, Game, ServerLog
+from cybersee.servers.tables import ServerLogTable
 
 
 class ServerViewSet(viewsets.ModelViewSet):
@@ -41,5 +42,5 @@ class ServerView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ServerView, self).get_context_data(**kwargs)
-        context['server_log_table'] = Server.objects.filter(owner=self.request.user)
+        context['server_log_table'] = ServerLogTable(ServerLog.objects.filter(server=self.object))
         return context
