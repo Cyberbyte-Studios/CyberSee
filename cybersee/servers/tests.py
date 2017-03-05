@@ -1,8 +1,8 @@
-from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
 from cybersee.servers.models import Server, Game, ServerLog
 from cybersee.users.models import User
+
 
 class TestGameAPI(APITestCase, APIClient):
     fixtures = [
@@ -11,7 +11,7 @@ class TestGameAPI(APITestCase, APIClient):
     ]
 
     def test_create_game(self):
-        print ("Testing Game Creation")
+        print ("\nTesting Game Creation")
         self.client.login(username='Test', password='testing123')
 
         data = {"name": "Rust", "description": "Rust Game"}
@@ -90,7 +90,7 @@ class TestSereverLogAPI(APITestCase, APIClient):
     ]
 
     def test_create_log(self):
-        print ("Testing Server Log Creation")
+        print ("\nTesting Server Log Creation")
         self.client.login(username='Test', password='testing123')
 
         data = {"server": "6749b1b0-39c1-4f79-babb-3092cb0dda22", "message": "Bob the Builder Can We Test It Yes We Can"}

@@ -5,9 +5,9 @@ from cybersee.metrics.models import Metric, Reading
 class MetricSerializer(serializers.ModelSerializer):
     class Meta:
         model = Metric
-        fields = ('name', 'description', 'unit')
+        fields = ('pk', 'name', 'description', 'unit')
 
 class ReadingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reading
-        fields = ('server', 'metric', 'value', 'recorded')
+        fields = ('pk', 'server', 'metric', 'value', 'recorded')
