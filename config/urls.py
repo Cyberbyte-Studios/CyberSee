@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^dashboard/$', DashboardView.as_view(), name='dashboard'),
     url(r'^server/(?P<pk>[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12})/$', ServerView.as_view(), name='server-detail'),
+    url(r'^server/new/$', NewServerView.as_view(), name='add-server'),
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
