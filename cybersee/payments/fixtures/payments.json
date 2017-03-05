@@ -1,1 +1,65 @@
-[{"model": "payments.plan", "pk": 1, "fields": {"name": "Free", "description": "The Free Plan.", "braintree_id": "0", "price": "0.00", "retention": 3, "hidden": false, "enabled": true, "metrics": [3, 4, 6, 7]}}, {"model": "payments.plan", "pk": 2, "fields": {"name": "Basic", "description": "Basic Plan", "braintree_id": "1", "price": "5.99", "retention": 10, "hidden": false, "enabled": true, "metrics": [3, 4, 5, 6, 7]}}, {"model": "payments.plan", "pk": 3, "fields": {"name": "Founder", "description": "ALL THE THINGS", "braintree_id": "99", "price": "0.00", "retention": 20, "hidden": true, "enabled": true, "metrics": [3, 4, 5, 6, 7, 8, 9, 10, 11]}}]
+[
+   {
+      "model":"payments.plan",
+      "pk":1,
+      "fields":{
+         "name":"Free",
+         "description":"The Free Plan.",
+         "braintree_id":"0",
+         "price":"0.00",
+         "retention":3,
+         "hidden":false,
+         "enabled":true,
+         "metrics":[
+            3,
+            4,
+            6,
+            7
+         ]
+      }
+   },
+   {
+      "model":"payments.plan",
+      "pk":2,
+      "fields":{
+         "name":"Basic",
+         "description":"Basic Plan",
+         "braintree_id":"1",
+         "price":"5.99",
+         "retention":10,
+         "hidden":false,
+         "enabled":true,
+         "metrics":[
+            3,
+            4,
+            5,
+            6,
+            7
+         ]
+      }
+   },
+   {
+      "model":"payments.plan",
+      "pk":3,
+      "fields":{
+         "name":"Founder",
+         "description":"ALL THE THINGS",
+         "braintree_id":"99",
+         "price":"0.00",
+         "retention":20,
+         "hidden":true,
+         "enabled":true,
+         "metrics":[
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+         ]
+      }
+   }
+]

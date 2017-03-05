@@ -1,8 +1,8 @@
-from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
 from cybersee.metrics.models import Metric, Reading
 from cybersee.users.models import User
+
 
 class TestMetricAPI(APITestCase, APIClient):
     fixtures = [

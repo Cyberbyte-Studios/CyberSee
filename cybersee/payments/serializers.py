@@ -5,4 +5,4 @@ from cybersee.payments.models import Plan
 class PlanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plan
-        fields = ('name', 'price', 'retention', 'hidden', 'enabled')
+        fields = ('pk', 'name', 'price', 'retention', 'metrics', 'hidden', 'enabled')
