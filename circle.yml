@@ -9,4 +9,3 @@ dependencies:
     - sudo pip install -r requirements/local.txt
   override:
     - npm install
-    - node_modules/gulp/bin/gulp.js
