@@ -23,15 +23,7 @@
          "ip_address":"100.73.95.18",
          "description":"NewEdenRP Dev Server",
          "owner":1,
-         "game":1,
-         "metrics":[
-            3,
-            4,
-            5,
-            7,
-            8,
-            9
-         ]
+         "game":1
       }
    },
    {
@@ -42,14 +34,7 @@
          "ip_address":"100.73.95.21",
          "description":"Critical Gaming's #2 Life Server",
          "owner":1,
-         "game":1,
-         "metrics":[
-            3,
-            4,
-            7,
-            8,
-            9
-         ]
+         "game":1
       }
    },
    {
@@ -60,14 +45,7 @@
          "ip_address":"8.8.4.4",
          "description":"Island Life Arma 2",
          "owner":1,
-         "game":2,
-         "metrics":[
-            3,
-            4,
-            7,
-            8,
-            9
-         ]
+         "game":2
       }
    },
    {
@@ -78,14 +56,7 @@
          "ip_address":"99.99.99.99",
          "description":"Shawn's Server",
          "owner":1,
-         "game":1,
-         "metrics":[
-            3,
-            4,
-            6,
-            10,
-            11
-         ]
+         "game":1
       }
    },
    {
@@ -96,14 +67,7 @@
          "ip_address":"100.73.95.20",
          "description":"CriticalGamings #1 Life Server",
          "owner":1,
-         "game":1,
-         "metrics":[
-            3,
-            4,
-            7,
-            8,
-            9
-         ]
+         "game":1
       }
    },
    {
@@ -114,16 +78,7 @@
          "ip_address":"100.73.95.19",
          "description":"This is the NewEden RP Server",
          "owner":1,
-         "game":1,
-         "metrics":[
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9
-         ]
+         "game":1
       }
    },
    {

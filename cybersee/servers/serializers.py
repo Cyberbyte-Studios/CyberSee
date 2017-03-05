@@ -7,10 +7,12 @@ class GameSerializer(serializers.ModelSerializer):
         model = Game
         fields = ('pk', 'name', 'description')
 
+
 class ServerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Server
-        fields = ('pk', 'name', 'owner', 'description', 'game', 'metrics')
+        fields = ('pk', 'name', 'owner', 'description', 'game')
+
 
 class ServerLogSerializer(serializers.ModelSerializer):
     class Meta:

@@ -18,7 +18,7 @@ router.register(r'readings', ReadingViewSet)
 router.register(r'servers', ServerViewSet)
 router.register(r'server-logs', ServerLogViewSet)
 router.register(r'games', GameViewSet)
-router.register(r'payments', PlanViewSet)
+router.register(r'plans', PlanViewSet)
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),

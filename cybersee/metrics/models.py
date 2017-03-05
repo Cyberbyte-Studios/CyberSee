@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils import timezone
 
+from cybersee.servers.models import Server
+
+
 class Metric(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
@@ -9,11 +12,12 @@ class Metric(models.Model):
     def __str__(self):
         return self.name
 
+
 class Reading(models.Model):
     metric = models.ForeignKey(Metric)
-    value = models.FloatField()#TODO:
+    value = models.FloatField()
     recorded = models.DateTimeField(default=timezone.now, db_index=True)
-    server = models.ForeignKey('servers.Server')
+    server = models.ForeignKey(Server)
 
     def __str__(self):
         return self.metric.name
