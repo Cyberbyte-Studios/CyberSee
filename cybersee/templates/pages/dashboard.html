@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="wrapper wrapper-content animated fadeInUp">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>You have {{ servers|length }} server{{ servers|pluralize }}</h5>
+        <div class="ibox-tools">
+          <a href="" class="btn btn-primary btn-xs">Add Server</a>
+        </div>
+      </div>
+      <div class="ibox-content">
+        {% if servers %}
+          <div class="project-list">
+            <table class="table table-hover">
+              <tbody>
+              <tr>
+                {% for server in servers %}
+                  <td class="project-status">
+                    <span class="label label-primary">Online***</span>
+                  </td>
+                  <td class="project-title">
+                    <a href="project_detail.html">{{ server.name }}</a>
+                    <br/>
+                    <small>Created 14.08.2014</small>
+                  </td>
+                  <td class="project-completion">
+                    <small>Completion with: 48%</small>
+                    <div class="progress progress-mini">
+                      <div style="width: 48%;" class="progress-bar"></div>
+                    </div>
+                  </td>
+                  <td class="project-completion">
+                    <small>Completion with: 48%</small>
+                    <div class="progress progress-mini">
+                      <div style="width: 48%;" class="progress-bar"></div>
+                    </div>
+                  </td>
+                  <td class="project-actions">
+                    <a href="#" class="btn btn-white btn-sm"><i class="fa fa-line-chart"></i> Stats </a>
+                    <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+                  </td>
+                {% endfor %}
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="text-center">
+            <h2>You have no servers setup</h2>
+            <a href="" class="btn btn-primary">Add Server</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

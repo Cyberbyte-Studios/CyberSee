@@ -8,6 +8,8 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from rest_framework import routers
+
+from cybersee.base.views import HomeView, DashboardView
 from cybersee.metrics.views import MetricViewSet, ReadingViewSet
 from cybersee.servers.views import ServerViewSet, GameViewSet, ServerLogViewSet
 from cybersee.payments.views import PlanViewSet
@@ -21,8 +23,8 @@ router.register(r'games', GameViewSet)
 router.register(r'plans', PlanViewSet)
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
-    url(r'^dashboard/$', TemplateView.as_view(template_name='pages/dashboard.html'), name='dashboard'),
+    url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^dashboard/$', DashboardView.as_view(), name='dashboard'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
 
     # Django Admin, use {% url 'admin:index' %}

@@ -8,6 +8,11 @@
 
 {% block content %}
   <div class="loginColumns animated fadeInDown">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
     <div class="row">
       <div class="col-md-6">
         <h2 class="font-bold">Sign in</h2>
