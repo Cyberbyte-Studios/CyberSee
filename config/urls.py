@@ -31,6 +31,8 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
 
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+
     url(r'^payment/plans/$', PlanView.as_view(), name='plans-list'),
     url(r'^payment/subscribe/(?P<pk>[0-9])$', SubscribeView.as_view(), name='subscribe'),
 

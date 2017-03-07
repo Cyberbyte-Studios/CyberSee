@@ -56,7 +56,8 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'stdimage',
-    'table'
+    'table',
+    'oauth2_provider'
 ]
 
 # Apps specific for this project go here.
@@ -296,6 +297,7 @@ REST_FRAMEWORK = {
         # 'rest_framework.filters.DjangoObjectPermissionsFilter', # TODO: we will need this but it requires enable view on everything
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
@@ -307,4 +309,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.DjangoModelPermissions',
     )
+}
+
+OAUTH2_PROVIDER = {
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
 }
