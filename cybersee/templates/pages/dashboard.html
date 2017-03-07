@@ -6,7 +6,7 @@
       <div class="ibox-title">
         <h5>You have {{ servers|length }} server{{ servers|pluralize }}</h5>
         <div class="ibox-tools">
-          <a href="" class="btn btn-primary btn-xs">Add Server</a>
+          <a data-toggle="modal" href="{% url "add-server"%}" data-target="#server-form-modal" class="btn btn-primary btn-xs">New Server</a>
         </div>
       </div>
       <div class="ibox-content">
@@ -55,4 +55,12 @@
       </div>
     </div>
   </div>
+
+{% load crispy_forms_tags %}
+<div class="modal fade" id="server-form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
 {% endblock %}

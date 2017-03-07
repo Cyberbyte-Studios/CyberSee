@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
 from rest_framework import viewsets
 
 from cybersee.base.helpers import get_user_or_none
@@ -44,3 +45,12 @@ class ServerView(LoginRequiredMixin, DetailView):
         context = super(ServerView, self).get_context_data(**kwargs)
         context['server_log_table'] = ServerLogTable(ServerLog.objects.filter(server=self.object))
         return context
+
+class NewServerView(LoginRequiredMixin, CreateView):
+    model = Server
+    template_name = "servers/add_server.html"
+    fields = ['name', 'description', 'game']
+
+    def form_valid(self, form):
+            form.instance.owner = self.request.user
+            return super(NewServerView, self).form_valid(form)

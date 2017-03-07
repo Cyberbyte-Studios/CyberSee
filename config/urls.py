@@ -11,7 +11,7 @@ from rest_framework import routers
 
 from cybersee.base.views import HomeView, DashboardView
 from cybersee.metrics.views import MetricViewSet, ReadingViewSet
-from cybersee.servers.views import ServerViewSet, GameViewSet, ServerLogViewSet, ServerView
+from cybersee.servers.views import ServerViewSet, GameViewSet, ServerLogViewSet, ServerView, NewServerView
 from cybersee.payments.views import PlanViewSet
 
 router = routers.DefaultRouter()

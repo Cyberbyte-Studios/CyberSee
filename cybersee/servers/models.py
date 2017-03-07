@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 from cybersee.users.models import User
 
 
@@ -23,6 +24,8 @@ class Server(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+            return reverse('server-detail', kwargs={'pk': self.pk})
 
 class ServerLog(models.Model):
     server = models.ForeignKey(Server)
