@@ -22,9 +22,4 @@ class Migration(migrations.Migration):
             name='community',
             field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='users.Community'),
         ),
-        migrations.AddField(
-            model_name='server',
-            name='metrics',
-            field=models.ManyToManyField(to='metrics.Metric'),
-        ),
     ]

@@ -1,5 +1,6 @@
 from django.db import models
 from cybersee.metrics.models import Metric
+from cybersee.users.models import User
 
 
 class Plan(models.Model):
@@ -11,3 +12,9 @@ class Plan(models.Model):
     retention = models.IntegerField()
     hidden = models.BooleanField(default=False)
     enabled = models.BooleanField(default=True)
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(User)
+    braintree_id = models.CharField(max_length=100)
+    active = models.BooleanField(default=False)

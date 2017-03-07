@@ -12,7 +12,7 @@ from rest_framework import routers
 from cybersee.base.views import HomeView, DashboardView
 from cybersee.metrics.views import MetricViewSet, ReadingViewSet
 from cybersee.servers.views import ServerViewSet, GameViewSet, ServerLogViewSet, ServerView
-from cybersee.payments.views import PlanViewSet
+from cybersee.payments.views import PlanViewSet, PlanView, SubscribeView
 
 router = routers.DefaultRouter()
 router.register(r'metrics', MetricViewSet)
@@ -30,6 +30,9 @@ urlpatterns = [
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
+
+    url(r'^payment/plans/$', PlanView.as_view(), name='plans-list'),
+    url(r'^payment/subscribe/(?P<pk>[0-9])$', SubscribeView.as_view(), name='subscribe'),
 
     # User management
     url(r'^users/', include('cybersee.users.urls', namespace='users')),
