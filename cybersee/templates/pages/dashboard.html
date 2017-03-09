@@ -49,7 +49,7 @@
         {% else %}
           <div class="text-center">
             <h2>You have no servers setup</h2>
-            <a href="" class="btn btn-primary">Add Server</a>
+            <a data-toggle="modal" href="{% url "add-server"%}" data-target="#server-form-modal" class="btn btn-primary">Add a Server</a>
           </div>
         {% endif %}
       </div>
