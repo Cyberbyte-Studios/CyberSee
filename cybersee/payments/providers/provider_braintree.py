@@ -19,7 +19,7 @@ def handle_braintree_errors(result):
     return False
 
 
-def get_customer(user, payment_method_nonce=None):
+def get_customer(user, request=None):
     customer = {
         "id": str(user.id),
         "first_name": user.first_name,
@@ -29,18 +29,17 @@ def get_customer(user, payment_method_nonce=None):
     try:
         result = braintree.Customer.update(str(user.id), customer)
     except NotFoundError:
-        if payment_method_nonce:
-            customer['payment-method-nonce'] = payment_method_nonce
+        if request and 'payment_method_nonce' in request.POST:
+            customer['payment-method-nonce'] = request.POST['payment_method_nonce']
         result = braintree.Customer.create(customer)
 
-    logger.error(dir(result.customer.payment_methods))
     if result.is_success:
         return result.customer
     return handle_braintree_errors(result)
 
 
-def request_payment_method(request, customer):
-    if 'payment-method-nonce' in request.POST:
+def get_payment_method(customer, request=None):
+    if request and 'payment-method-nonce' in request.POST:
         result = braintree.PaymentMethod.create({
             "customer_id": request.user.id,
             "payment_method_nonce": request.POST['payment-method-nonce']
@@ -49,7 +48,7 @@ def request_payment_method(request, customer):
             return result.payment_method
         return handle_braintree_errors(result)
 
-    if 'payment-method' in request.POST and request.POST['payment-method'] in customer.payment_methods:
+    if request and 'payment-method' in request.POST and request.POST['payment-method'] in customer.payment_methods:
         return customer.payment_methods[request.POST['payment-method']]
 
     if len(customer.payment_methods) > 0:
@@ -59,19 +58,32 @@ def request_payment_method(request, customer):
     return False
 
 
+def make_payment_default(token):
+    result = braintree.PaymentMethod.update(token, {
+        "options": {
+            "make_default": True
+        }
+    })
+    if result.is_success:
+        return result.payment_method
+    return handle_braintree_errors(result)
+
+
 def subscribe(plan, request):
-    customer = get_customer(request.user)
+    customer = get_customer(request.user, request)
     if customer is False:
         messages.warning(request, 'Failed creating customer')
         return False
 
-    payment = request_payment_method(request, customer)
+    payment = get_payment_method(customer, request)
     if payment is False:
         messages.warning(request, 'Unable to create payment method')
         return False
 
+    make_payment_default(payment.token)
+
     result = braintree.Subscription.create({
-        "payment_method_token": customer.payment_methods[0].token,
+        "payment_method_token": payment.token,
         "plan_id": plan.braintree_id
     })
 
