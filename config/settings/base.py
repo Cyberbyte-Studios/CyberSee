@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
 
+import braintree
 import environ
 import sys
 
@@ -314,3 +315,10 @@ REST_FRAMEWORK = {
 OAUTH2_PROVIDER = {
     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
 }
+
+braintree.Configuration.configure(
+    braintree.Environment.Sandbox,
+    merchant_id=env('BRAINTREE_MERCHANT', default='gkbwrvb4yz5wjjsw'),
+    public_key=env('BRAINTREE_PUBLIC_KEY', default='24gqnk8dvk4k39g2'),
+    private_key=env('BRAINTREE_PRIVATE_KEY', default='810f8bf2ce0247cd2bd050a7d1437919')
+)

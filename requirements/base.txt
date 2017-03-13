@@ -52,4 +52,7 @@ djangorestframework
 django-stdimage
 django-datatable
 braintree
-pip install django-oauth-toolkit
+django-oauth-toolkit
+coreapi
+pygments
+markdown
