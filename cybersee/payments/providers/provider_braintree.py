@@ -38,23 +38,22 @@ def get_customer(user, request=None):
     return handle_braintree_errors(result)
 
 
-def get_payment_method(customer, request=None):
-    if request and 'payment-method-nonce' in request.POST:
+def get_payment_method(customer, user=None, method=None, nonce=None):
+    if nonce and user:
         result = braintree.PaymentMethod.create({
             "customer_id": request.user.id,
-            "payment_method_nonce": request.POST['payment-method-nonce']
+            "payment_method_nonce": nonce
         })
         if result.is_success:
             return result.payment_method
         return handle_braintree_errors(result)
 
-    if request and 'payment-method' in request.POST and request.POST['payment-method'] in customer.payment_methods:
-        return customer.payment_methods[request.POST['payment-method']]
+    if method in customer.payment_methods:
+        return customer.payment_methods[method]
 
-    if len(customer.payment_methods) > 0:
-        for payment_method in customer.payment_methods:
-            if payment_method.default:
-                return payment_method
+    for payment_method in customer.payment_methods:
+        if payment_method.default:
+            return payment_method
     return False
 
 
