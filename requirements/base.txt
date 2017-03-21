@@ -56,3 +56,4 @@ django-oauth-toolkit
 coreapi
 pygments
 markdown
+django-filter

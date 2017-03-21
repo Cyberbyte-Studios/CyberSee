@@ -1,5 +1,5 @@
 from django.contrib import admin
-from cybersee.servers.models import Server, Game, ServerLog
+from cybersee.servers.models import Server, Game, ServerLog, ServerInfo
 
 
 @admin.register(Game)
@@ -18,3 +18,9 @@ class ServerLogAdmin(admin.ModelAdmin):
     list_display = ('id', 'server', 'message', 'recorded')
     search_fields = ('message', )
     list_filter = ('server__name', 'recorded' )
+
+@admin.register(ServerInfo)
+class ServerInfoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'server')
+    search_fields = ('name',)
+    list_filter = ('server__name', )

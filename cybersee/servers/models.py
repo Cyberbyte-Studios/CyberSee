@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 from cybersee.users.models import User
 
 
@@ -10,7 +11,6 @@ class Game(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class Server(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -23,6 +23,8 @@ class Server(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+            return reverse('server-detail', kwargs={'pk': self.pk})
 
 class ServerLog(models.Model):
     server = models.ForeignKey(Server)
@@ -31,3 +33,12 @@ class ServerLog(models.Model):
 
     class Meta:
         ordering = ['-recorded']
+
+class ServerInfo(models.Model):
+    operating_system = models.CharField(max_length=100, blank=True)
+    cpu_model = models.CharField(max_length=100, blank=True)
+    core_count = models.SmallIntegerField(blank=True)
+    core_freq = models.FloatField(blank=True)
+    max_mem = models.PositiveIntegerField(blank=True)
+    game_version = models.CharField(max_length=100, blank=True)
+    server = models.OneToOneField(Server)
