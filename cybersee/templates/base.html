@@ -32,10 +32,19 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
           integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
           crossorigin="anonymous"></script>
+
+  <!-- sam remove this -->
+  <script type="text/javascript" src="{% static 'js/plugins/peity/jquery.peity.min.js' %}"></script>
+  <script>
+    $(".line").peity("line",{
+            fill: '#1ab394',
+            stroke:'#169c81',
+            width: 200,
+        })
+  </script>
   {% compress js %}
     <script src="{% static 'js/project.js' %}"></script>
   {% endcompress %}
 {% endblock javascript %}
 </body>
 </html>
-

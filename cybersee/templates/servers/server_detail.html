@@ -12,7 +12,7 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="m-b-md">
-                  <a href="#" class="btn btn-white btn-xs pull-right">Edit project</a>
+                  <a data-toggle="modal" href="{% url "edit-server" server.id %}" data-target="#edit-server-form-modal" class="btn btn-white btn-xs pull-right">Edit Server</a>
                   <h2>{{ object.name }}</h2>
                 </div>
                 <dl class="dl-horizontal">
@@ -25,10 +25,10 @@
               <div class="col-lg-5">
                 <dl class="dl-horizontal">
 
-                  <dt>Created by:</dt>
-                  <dd>Alex Smith</dd>
-                  <dt>Messages:</dt>
-                  <dd> 162</dd>
+                  <dt>Game:</dt>
+                  <dd>{{ object.game.name }}</dd>
+                  <dt>Game Version:</dt>
+                  <dd> v{{ object.serverinfo.game_version }}</dd>
                   <dt>Client:</dt>
                   <dd><a href="#" class="text-navy"> Zender Company</a></dd>
                   <dt>Version:</dt>
@@ -38,10 +38,10 @@
               <div class="col-lg-7" id="cluster_info">
                 <dl class="dl-horizontal">
 
-                  <dt>Last Updated:</dt>
-                  <dd>16.08.2014 12:15:57</dd>
-                  <dt>Created:</dt>
-                  <dd> 10.07.2014 23:36:57</dd>
+                  <dt>Operating System:</dt>
+                  <dd>{{ object.serverinfo.operating_system }}</dd>
+                  <dt>Processor:</dt>
+                  <dd> {{ object.serverinfo.cpu_model }}</dd>
                   <dt>Participants:</dt>
                   <dd class="project-people">
                     <a href=""><img alt="image" class="img-circle" src="img/a3.jpg"></a>
@@ -181,13 +181,10 @@
     </div>
     <div class="col-lg-3">
       <div class="wrapper wrapper-content project-manager">
-        <h4>Project description</h4>
+        <h4>Server description</h4>
         <img src="img/zender_logo.png" class="img-responsive">
         <p class="small">
-          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
-          some form, by injected humour, or randomised words which don't look
-          even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
-          anything embarrassing
+          {{ object.description }}
         </p>
         <p class="small font-bold">
           <span><i class="fa fa-circle text-warning"></i> High priority</span>
@@ -211,6 +208,13 @@
           <a href="#" class="btn btn-xs btn-primary">Report contact</a>
 
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="edit-server-form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
       </div>
     </div>
   </div>

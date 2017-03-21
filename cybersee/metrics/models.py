@@ -8,6 +8,7 @@ class Metric(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     unit = models.CharField(max_length=5, null=True, blank=True)
+    slug = models.SlugField(max_length=100, blank=True)
 
     def __str__(self):
         return self.name

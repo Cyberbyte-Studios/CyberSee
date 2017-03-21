@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from rest_framework import viewsets
 
 from cybersee.base.helpers import get_user_or_none
@@ -54,3 +54,12 @@ class NewServerView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
             form.instance.owner = self.request.user
             return super(NewServerView, self).form_valid(form)
+
+class EditServerView(LoginRequiredMixin, UpdateView):
+    model = Server
+    template_name = "servers/edit_server.html"
+    fields = ['name', 'description', 'game']
+
+    def form_valid(self, form):
+            form.instance.owner = self.request.user
+            return super(EditServerView, self).form_valid(form)

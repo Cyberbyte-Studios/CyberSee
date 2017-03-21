@@ -10,4 +10,4 @@ class ServerLogTable(Table):
 
     class Meta:
         model = ServerLog
-        ajax = True
+#        ajax = True
