@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
 
+import braintree
 import environ
 import sys
 
@@ -56,7 +57,8 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'stdimage',
-    'table'
+    'table',
+    'oauth2_provider'
 ]
 
 # Apps specific for this project go here.
@@ -296,6 +298,7 @@ REST_FRAMEWORK = {
         # 'rest_framework.filters.DjangoObjectPermissionsFilter', # TODO: we will need this but it requires enable view on everything
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
@@ -308,3 +311,14 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissions',
     )
 }
+
+OAUTH2_PROVIDER = {
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+}
+
+braintree.Configuration.configure(
+    braintree.Environment.Sandbox,
+    merchant_id=env('BRAINTREE_MERCHANT', default='gkbwrvb4yz5wjjsw'),
+    public_key=env('BRAINTREE_PUBLIC_KEY', default='24gqnk8dvk4k39g2'),
+    private_key=env('BRAINTREE_PRIVATE_KEY', default='810f8bf2ce0247cd2bd050a7d1437919')
+)

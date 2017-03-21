@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  {% for plan in plans %}
+    <a href="{% url "subscribe" plan.id %}">{{ plan.name }} - £{{ plan.price }}</a>
+  {% endfor %}
+
+{% endblock %}

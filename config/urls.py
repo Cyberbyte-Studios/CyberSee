@@ -5,14 +5,14 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from rest_framework import routers
+from rest_framework.documentation import include_docs_urls
 
 from cybersee.base.views import HomeView, DashboardView
 from cybersee.metrics.views import MetricViewSet, ReadingViewSet
 from cybersee.servers.views import ServerViewSet, GameViewSet, ServerLogViewSet, ServerView, NewServerView, EditServerView
-from cybersee.payments.views import PlanViewSet
+from cybersee.payments.views import PlanViewSet, PlanView, SubscribeView
 
 router = routers.DefaultRouter()
 router.register(r'metrics', MetricViewSet)
@@ -21,6 +21,9 @@ router.register(r'servers', ServerViewSet)
 router.register(r'server-logs', ServerLogViewSet)
 router.register(r'games', GameViewSet)
 router.register(r'plans', PlanViewSet)
+
+API_TITLE = 'CyberSee API'
+API_DESCRIPTION = '...'
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
@@ -33,6 +36,12 @@ urlpatterns = [
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
+
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    url(r'^docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
+
+    url(r'^payment/plans/$', PlanView.as_view(), name='plans-list'),
+    url(r'^payment/subscribe/(?P<pk>[0-9])$', SubscribeView.as_view(), name='subscribe'),
 
     # User management
     url(r'^users/', include('cybersee.users.urls', namespace='users')),

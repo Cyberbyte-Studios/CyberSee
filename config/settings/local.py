@@ -77,5 +77,18 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 CELERY_ALWAYS_EAGER = True
 ########## END CELERY
 
-# Your local stuff: Below this line define 3rd party library settings
-# ------------------------------------------------------------------------------
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'cybersee': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

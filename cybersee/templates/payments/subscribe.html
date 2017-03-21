@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% load static braintree_view %}
+
+{% block content %}
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <form role="form" id="payment-methods" method="POST" action="{% url "subscribe" plan.id %}">
+      {% csrf_token %}
+      <input type="hidden" id="plan" name="plan" value="{{ plan.id }}">
+      <div class="row">
+        {% for payment_method in view.customer.payment_methods %}
+          <div class="col-md-4">
+            <button class="payment-card" type="submit" name="payment-method" id="payment-method" value="{{ payment_method.token }}">
+              <i class="fa {{ payment_method|card_icon }} payment-icon-big text-success"></i>
+              {% if payment_method.last_4 %}
+                <h2>**** **** **** {{ payment_method.last_4 }}</h2>
+              {% elif payment_method.email %}
+                <h2>{{ payment_method.email }}</h2>
+              {% endif %}
+              <div class="row">
+                {% if payment_method.cardholder_name %}
+                  <div class="col-sm-6">
+                    <small>
+                      <strong>Expiry date:</strong> {{ payment_method.expiration_date }}
+                    </small>
+                  </div>
+                {% endif %}
+                {% if payment_method.cardholder_name %}
+                  <div class="col-sm-6 text-right">
+                    <small>
+                      <strong>Name:</strong> {{ payment_method.cardholder_name }}
+                    </small>
+                  </div>
+                {% endif %}
+              </div>
+            </button>
+          </div>
+        {% endfor %}
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox">
+          <div class="ibox-title">
+            Sign Up Now
+          </div>
+          <div class="ibox-content">
+            <form role="form" id="payment-form" method="POST" action="{% url "subscribe" plan.id %}">
+              {% csrf_token %}
+              <input type="hidden" id="payment-method-nonce" name="payment-method-nonce">
+              <div class="panel-group payments-method" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <div class="pull-right">
+                      <i class="fa fa-cc-paypal text-success"></i>
+                    </div>
+                    <h5 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">PayPal</a>
+                    </h5>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+
+                      <div class="row">
+                        <div class="col-md-10">
+                          <h2>Pay Now</h2>
+                          <strong>Product:</strong> {{ plan.name }}<br/>
+                          <strong>Price:</strong> <span class="text-navy">£{{ plan.price }}</span>
+                          <p class="m-t">{{ plan.description }}</p>
+
+                          <button class="btn btn-success" id="paypal-button">
+                            <i class="fa fa-cc-paypal">
+                              Purchase via PayPal
+                            </i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <div class="pull-right">
+                      <i class="fa fa-cc-amex text-success"></i>
+                      <i class="fa fa-cc-mastercard text-warning"></i>
+                      <i class="fa fa-cc-discover text-danger"></i>
+                    </div>
+                    <h5 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Credit Card</a>
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse ">
+                    <div class="panel-body">
+
+                      <div class="row">
+                        <div class="col-md-4">
+                          <h2>Pay Now</h2>
+                          <strong>Product:</strong> {{ plan.name }}<br/>
+                          <strong>Price:</strong> <span class="text-navy">£{{ plan.price }}</span>
+                          <p class="m-t">{{ plan.description }}</p>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="row">
+                            <div class="col-xs-12">
+                              <div class="form-group">
+                                <label>CARD NUMBER</label>
+                                <div class="input-group">
+                                  <div id="card-number" class="form-control"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-7 col-md-4">
+                              <div class="form-group">
+                                <label>EXPIRATION DATE</label>
+                                <div id="expiration-date" class="form-control"></div>
+                              </div>
+                            </div>
+                            <div class="col-xs-5 col-md-4">
+                              <div class="form-group">
+                                <label>Security(CVC) CODE</label>
+                                <div id="security-code" class="form-control"></div>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 pull-right">
+                              <div class="form-group">
+                                <label>POST CODE</label>
+                                <div id="post-code" class="form-control"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-12">
+                              <button class="btn btn-primary" type="submit" id="submit-card">Make a payment!</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <p>All payments are handled by Braintree, we do not have access to any of your payment details. If you
+              want
+              to know more please contact support.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ view.scripts|safe }}
+  <script src="https://js.braintreegateway.com/web/3.9.0/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.9.0/js/hosted-fields.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.9.0/js/paypal.min.js"></script>
+  <script src="{% static "payments/cart.js" %}"></script>
+{% endblock scripts %}
